@@ -19,6 +19,9 @@ func fire():
 	get_parent().add_child(bullet)
 
 
+func _physics_process(_delta):
+	self.position.y += .15
+	
 func _on_Timer_timeout():
 	
 	fire()
