@@ -1,16 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Levels/bg.gd" type="Script" id=3]
 [ext_resource path="res://Assets/bg.png" type="Texture" id=4]
+[ext_resource path="res://Levels/Cursor.gd" type="Script" id=5]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 3 )
 
 [node name="bg" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 offset = Vector2( 240, 135 )
+script = ExtResource( 3 )
+
+[node name="bg2" type="Sprite" parent="."]
+position = Vector2( 0, -269 )
+texture = ExtResource( 4 )
+offset = Vector2( 240, 135 )
+script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 227.416, 185.208 )
@@ -29,11 +36,9 @@ position = Vector2( 415.144, 153.08 )
 
 [node name="Enemy5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 69.9255, 146.151 )
-[connection signal="area_entered" from="Enemy/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="area_entered" from="Enemy2/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="area_entered" from="Enemy3/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="area_entered" from="Enemy4/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="area_entered" from="Enemy5/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[node name="Cursor" type="Node" parent="."]
+script = ExtResource( 5 )
 
 [editable path="Enemy"]
 

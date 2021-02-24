@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const ACCELERATION = 1600
-const MAX_SPEED = 150
+const MAX_SPEED = 115
 const ROLL_SPEED = 90
 const FRICTION = 1600
 
@@ -30,6 +30,9 @@ func _ready():
 	#swordHitbox.knockback_vector = roll_vector
 	
 func _physics_process(delta):
+	
+	self.position.y += .15
+	
 	match state:
 		MOVE:
 			move_state(delta)
