@@ -31,7 +31,7 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	self.position.y += .15
+	#self.position.y += .15
 	
 	match state:
 		MOVE:
@@ -58,7 +58,7 @@ func move_state(delta):
 		animationState.travel("Walk")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		animationState.travel("Idle")
+		animationState.travel("Walk")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	animationTree.set("parameters/Idle/blend_position", mouse_vector)
@@ -85,8 +85,6 @@ func attack_state(_delta):
 	var arrow = Arrow.instance()
 	arrow.global_position = self.global_position
 	arrow.velocity = mouse_vector
-	
-	print()
 	arrow.rotation = get_angle_to(get_global_mouse_position())
 	get_parent().add_child(arrow)
 	onAttackAnimationFinished()
