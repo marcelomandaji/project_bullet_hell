@@ -7,7 +7,7 @@ func _ready():
 	g_texture_height = texture.get_size().y * scale.y
 
 func _process(delta):
-	position.y += velocity
+	#position.y += velocity
 	_attempt_reposition()
 	
 func _attempt_reposition():

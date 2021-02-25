@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Project Bullet Hell"
 run/main_scene="res://Levels/Level.tscn"
 
+[autoload]
+
+Scroll="*res://Tools/Scroll.tscn"
+
 [display]
 
 window/size/width=480

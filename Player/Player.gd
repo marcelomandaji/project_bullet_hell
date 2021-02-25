@@ -27,11 +27,12 @@ var mouse_vector = Vector2.ZERO
 
 func _ready():
 	animationTree.active = true
+	
 	#swordHitbox.knockback_vector = roll_vector
 	
 func _physics_process(delta):
 	
-	#self.position.y += .15
+	#self.position.y -= .15
 	
 	match state:
 		MOVE:
@@ -43,7 +44,7 @@ func _physics_process(delta):
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
-	mouse_vector = Vector2(get_viewport().get_mouse_position() - self.position).normalized()
+	mouse_vector = Vector2(get_global_mouse_position()- self.position).normalized()
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
@@ -58,7 +59,10 @@ func move_state(delta):
 		animationState.travel("Walk")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		animationState.travel("Walk")
+		if Scroll.scrolling:
+			animationState.travel("Walk")
+		else:
+			animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	animationTree.set("parameters/Idle/blend_position", mouse_vector)
